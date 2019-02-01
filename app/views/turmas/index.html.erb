@@ -1,0 +1,241 @@
+<p id="notice"><%= notice %></p>
+<div class="icons-menu">
+<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+<%= link_to image_tag("icons/new.png"), new_turma_path, {:class => "icon"}%>
+
+</div>
+<h1>Turmas
+<%= render 'search'%>
+</h1>
+<table >
+	  <thead>
+	    <tr >
+		  <th style="border: 2px solid white;">Período</th>
+	      <th style="border: 2px solid white;">Segunda</th>
+	      <th style="border: 2px solid white;">Terça</th>
+	      <th style="border: 2px solid white;">Quarta</th>
+	      <th style="border: 2px solid white;">Quinta</th>
+	      <th style="border: 2px solid white;">Sexta</th>
+		  <th style="border: 2px solid white;">Sábado</th>
+	      
+	      </div>
+	    </tr>
+	  </thead>
+  <tbody>
+		<tr style="border: 4px solid white;">
+			<td style="border: 2px solid white;"><h4>Matutino</h4></td'>
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Segunda-feira' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>	
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Terça-feira' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quarta-feira' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quinta-feira' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sexta-feira' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sabado' && turma.turno == 'Matutino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+		</tr>
+		<tr>
+			<td style="border: 4px solid white;"><h4>Vespertino</h4></td>
+			<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Segunda-feira' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+							
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Terça-feira' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quarta-feira' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quinta-feira' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sexta-feira' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sabado' && turma.turno == 'Vespertino'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+		
+		</tr>
+		<tr>
+			<td style="border: 4px solid white;"><h4>Noturno</h4></td>
+			<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Segunda-feira' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>							
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Terça-feira' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quarta-feira' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Quinta-feira' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sexta-feira' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+				
+				<td style="border: 2px solid white;font-size:10px">
+					<% @turmas.each do |turma| %>
+						<%if turma.dia == 'Sabado' && turma.turno == 'Noturno'%>
+							<p style="border: 1px solid green;background-color: white">
+								<%= turma.nome %> <%= link_to image_tag("icons/show.png"),turma, {:class => "icon"}%><br />
+								
+								Inicio: <%= turma.hora_inicio.strftime("%H:%M") %><br />
+							</p>
+						<%end%>
+					<%end%>
+				</td>
+		</tr>
+		<% if @turmas.blank? %>
+	  		<h4>Nao encontrado resultados para <%= params[:search] %>.</h4>
+		<% end %>
+  </tbody>
+</table>

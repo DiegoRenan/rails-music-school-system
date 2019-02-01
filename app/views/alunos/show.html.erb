@@ -1,0 +1,94 @@
+<div class="icons-menu show">
+<%= link_to image_tag("icons/back.png"), alunos_path, {:class => "icon"}%>
+<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+<%= link_to image_tag("icons/edit.png"),edit_aluno_path(@aluno), {:class => "icon"}%>
+<%= link_to image_tag("icons/delete.png"), @aluno, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+<h1>Alunos</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice">
+			<%= notice %>
+		</p>
+
+		<p>
+			<strong>Cpf:</strong>
+			<%= @aluno.cpf %>
+		</p>
+
+		<p>
+			<strong>Rg:</strong>
+			<%= @aluno.rg %>
+		</p>
+
+		<p>
+			<strong>Nome:</strong>
+			<%= @aluno.nome %>
+		</p>
+
+		<p>
+			<strong>Data nascimento:</strong>
+			<%= @aluno.data_nascimento.strftime("%d/%m/%Y") %>
+		</p>
+
+		<p>
+			<strong>Estado civil:</strong>
+			<%= @aluno.estado_civil %>
+		</p>
+
+		<p>
+			<strong>Sexo:</strong>
+			<%= @aluno.sexo %>
+		</p>
+
+		<p>
+			<strong>Telefone:</strong>
+			<%= @aluno.telefone %>
+		</p>
+
+		<p>
+			<strong>Celular:</strong>
+			<%= @aluno.celular %>
+		</p>
+
+		<p>
+			<strong>Email:</strong>
+			<%= @aluno.email %>
+		</p>
+
+		<p>
+			<strong>Profissao:</strong>
+			<%= @aluno.profissao %>
+		</p>
+
+		<p>
+			<strong>Nome pai:</strong>
+			<%= @aluno.nome_pai %>
+		</p>
+
+		<p>
+			<strong>Nome mae:</strong>
+			<%= @aluno.nome_mae %>
+		</p>
+
+		<p>
+			<strong>Observacao:</strong>
+			<%= @aluno.observacao %>
+		</p>
+
+		<p>
+			<strong>Parentesco responsavel:</strong>
+			<%= @aluno.parentesco_responsavel %>
+		</p>
+
+		<p>
+			<strong>Responsavel:</strong>
+			<%if @aluno.responsavel %>
+				<%= @aluno.responsavel.nome%>
+			<% end%>
+		</p>
+	</div>
+</div>
+<%= link_to 'Edit', edit_aluno_path(@aluno) %> |
+<%= link_to 'Back', alunos_path %>
+

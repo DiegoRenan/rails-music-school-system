@@ -1,0 +1,50 @@
+<h1>Instituições</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice">
+			<%= notice %>
+		</p>
+		<p>
+			<strong>CNPJ:</strong>
+			<%= @instituicao.cnpj %>
+		</p>
+
+		<p>
+			<strong>Insc. Estadual:</strong>
+			<%= @instituicao.insc_estadual %>
+		</p>
+
+		<p>
+			<strong>Razão Social:</strong>
+			<%= @instituicao.razao_social %>
+		</p>
+
+		<p>
+			<strong>Nome fantasia:</strong>
+			<%= @instituicao.nome_fantasia %>
+		</p>
+
+		<p>
+			<strong>Endereço:</strong>
+			<%= @instituicao.endereco %>
+		</p>
+
+		<p>
+			<strong>Telefone:</strong>
+			<%= @instituicao.telefone %>
+		</p>
+
+		<p>
+			<strong>E-Mail:</strong>
+			<%= @instituicao.email %>
+		</p>
+
+		<p>
+			<strong>Responsável:</strong>
+			<%= @instituicao.responsavel %>
+		</p>
+	</div>
+</div>
+
+<%= link_to 'Edit', edit_instituicao_path(@instituicao) %> |
+<%= link_to 'Back', instituicaos_path %>

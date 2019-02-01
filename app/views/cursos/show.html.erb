@@ -1,0 +1,25 @@
+<div class="icons-menu show">
+	<%= link_to image_tag("icons/back.png"), cursos_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/edit.png"),edit_curso_path(@curso), {:class => "icon"}%>
+	<%= link_to image_tag("icons/delete.png"), @curso, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+<h1>Cursos</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+
+		<p id="notice">
+			<%= notice %>
+		</p>
+
+		<p>
+			<strong>Nome:</strong>
+			<%= @curso.nome %>
+		</p>
+
+		<p>
+			<strong>Valor:</strong>
+			<%= @curso.valor %>
+		</p>
+	</div>
+</div>

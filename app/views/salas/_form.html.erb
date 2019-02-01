@@ -1,0 +1,45 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<%= form_for(@sala) do |f| %>
+		<% if @sala.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@sala.errors.count, "error") %> prohibited this sala from being saved:</h2>
+
+			<ul>
+				<% @sala.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nome %>
+				<br>
+				<%= f.text_field :nome, class: "form-control"  %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :numero %>
+				<br>
+				<%= f.number_field :numero, min: 0, class: "form-control"  %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :limite %>
+				<br>
+				<%= f.number_field :limite, min: 0, class: "form-control"  %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+<div class="icons-menu">
+	<%= link_to image_tag("icons/back.png"), mensalidades_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/receber2.png"), edit_mensalidade_path(@mensalidade), {:class => "icon"}%>
+</div>
+
+<h1>Mensalidades</h1>
+<div class="panel panel-default form-inline">
+	<div class="panel-body">
+		<h4 style="color: green">
+		  <strong>Status:</strong>
+		  <%= @mensalidade.status %>
+		</h4>
+		
+		<p>
+		  <strong>Matricula:</strong>
+		  <%= @mensalidade.matricula.id %>
+
+		  <strong>Codigo:</strong>
+		  <%= @mensalidade.codigo %>
+		</p>
+
+		<p>
+		  <strong>Aluno:</strong>
+		  <%= @mensalidade.matricula.aluno.nome %>
+		</p>
+
+		<p>
+		  <strong>Data emissao:</strong>
+		  <%= @mensalidade.data_emissao %>
+
+		  <strong>Data vencimento:</strong>
+		  <%= @mensalidade.data_vencimento %>
+		</p>
+
+		<p>
+		  <strong>Numero:</strong>
+		  <%= @mensalidade.numero %>
+
+		  <strong>Valor da Mensalidade:</strong>
+		  <%= @mensalidade.valor %>
+		</p>
+		
+		<p>
+		  <strong>Juros:</strong>
+		  <%= @juros %>
+
+		  <strong>Desconto:</strong>
+		  <%= @mensalidade.desconto %>
+
+		  <strong>Valor pago:</strong>
+		  <%= @mensalidade.valor_pago %>
+		</p>
+
+		<h4>
+		  <strong>Valor Total:</strong>
+		  <%= @valor_total %>
+		</h4>
+		
+		
+
+	</div>
+</div>
+<%= link_to 'Back', mensalidades_path %>

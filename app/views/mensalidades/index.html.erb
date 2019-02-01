@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+<div class="icons-menu">
+<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+</div>
+<h1>
+Mensalidades
+<%= render 'search'%>
+</h1>
+<%= form_tag(mensalidades_path, :method => "get", id: "select-form") do %>
+			<span class="input-group">
+				<%= radio_button_tag  :seleciona, "todas", false, class: "color_input" %>Todas
+				<%= radio_button_tag :seleciona, "abertas", false, class: "color_input" %>Abertas
+				<%= radio_button_tag :seleciona, "quitadas",false, class: "color_input" %>Quitadas
+				<%= radio_button_tag :seleciona, "vencidas", false, class: "color_input" %>vencidas
+				<%= submit_tag "Ir", :name => nil, :class => "btn btn-default" %>
+			</span>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+	  <th>Id</th>
+      <th>Nome</th>
+      <th>vencimento</th>
+      <th>Parcela</th>
+	  <th>Valor Total</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+	<div id="todas">
+		<% @mensalidades.each do |mensalidade| %>
+		  <tr>
+			<td><%= mensalidade.matricula.id %></td>
+			<td><%= mensalidade.matricula.aluno.nome %></td>
+			<% if mensalidade.data_vencimento > Date.today %>
+				<td><%= mensalidade.data_vencimento %></td>
+			<%elsif mensalidade.status == "aberta" %>
+				<td style="color: red"><%= mensalidade.data_vencimento %></td>
+			<%elsif mensalidade.status == "pago" %>
+				<td style="color: green"><%= mensalidade.data_vencimento %></td>
+			<%end%>
+			<td><%= mensalidade.numero %></td>
+			<td><%= mensalidade.valor %></td>
+			<td><%= link_to image_tag("icons/show.png"),mensalidade, {:class => "icon"}%></td>
+			
+		  </tr>
+		<% end %>
+	</div>
+	<% if @mensalidades.blank? %>
+	  	<h4>Nao encontrado resultados para <%= params[:search] %>.</h4>
+	<% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'Welcome', controller: 'welcome' %>

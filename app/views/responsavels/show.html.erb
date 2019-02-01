@@ -1,0 +1,97 @@
+<div class="icons-menu show">
+	<%= link_to image_tag("icons/back.png"), responsavels_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/edit.png"),edit_responsavel_path(@responsavel), {:class => "icon"}%>
+	<%= link_to image_tag("icons/delete.png"), @responsavel, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+<h1>Responsável</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice">
+			<%= notice %>
+		</p>
+		<p>
+			<strong>Cpf:</strong>
+			<%= @responsavel.cpf %>
+		</p>
+
+		<p>
+			<strong>Rg:</strong>
+			<%= @responsavel.rg %>
+		</p>
+
+		<p>
+			<strong>Nome:</strong>
+			<%= @responsavel.nome %>
+		</p>
+
+		<p>
+			<strong>Aluno(s):</strong>
+			<% @responsavel.alunos.each do |aluno| %>
+			<%= aluno.nome+',' %>
+			<% end %>
+		</p>
+
+		<p>
+			<strong>Data nascimento:</strong>
+			<%= @responsavel.data_nascimento %>
+		</p>
+
+		<p>
+			<strong>Estado civil:</strong>
+			<%= @responsavel.estado_civil %>
+		</p>
+
+		<p>
+			<strong>Telefone:</strong>
+			<%= @responsavel.telefone %>
+		</p>
+
+		<p>
+			<strong>Celular:</strong>
+			<%= @responsavel.celular %>
+		</p>
+
+		<p>
+			<strong>Email:</strong>
+			<%= @responsavel.email %>
+		</p>
+
+		<p>
+			<strong>Profissao:</strong>
+			<%= @responsavel.profissao %>
+		</p>
+
+		<p>
+			<strong>Endereco:</strong>
+			<%= @responsavel.endereco %>
+		</p>
+
+		<p>
+			<strong>Numero:</strong>
+			<%= @responsavel.numero %>
+		</p>
+
+		<p>
+			<strong>Bairro:</strong>
+			<%= @responsavel.bairro %>
+		</p>
+
+		<p>
+			<strong>Cep:</strong>
+			<%= @responsavel.cep %>
+		</p>
+
+		<p>
+			<strong>Cidade:</strong>
+			<%= @responsavel.cidade %>
+		</p>
+
+		<p>
+			<strong>Uf:</strong>
+			<%= @responsavel.uf %>
+		</p>
+	</div>
+</div>
+<%= link_to 'Edit', edit_responsavel_path(@responsavel) %> |
+<%= link_to 'Back', responsavels_path %>

@@ -1,0 +1,322 @@
+<button id="gerarContrato" style="background: none; border: none" onclick="window.print() "><%=image_tag("icons/printer-icon.png", alt: "imprimir",:class => "icon" )%></button>
+	<h1>Contrato</h1>
+	<div class="panel panel-default" >
+		<div class="panel-body">
+			<div id="printable">
+
+				<h2>Elite Música Projetos Musicais</h2>
+				<h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</h1>
+				<p  align="justify">
+					<strong> CONTRATANTE:</strong>
+					<br/>
+					Nome: <%if !@responsavel.nil? %>
+							<%= @responsavel.nome %>
+						<%end%>
+					<br/>
+					Nacionalidade: Brasileiro    			   Estado Civil: <%if !@responsavel.nil? %> <%= @responsavel.estado_civil %> <%end%>
+					<br/>
+					RG: <%if !@responsavel.nil? %> <%= @responsavel.rg %><% end %>
+					<br/>
+					CPF: <%if !@responsavel.nil? %> <%= @responsavel.cpf%><% end %>
+					<br/>
+					Endereço: <%if !@responsavel.nil? %>  <%=@responsavel.endereco%>, Nª <%= @responsavel.numero%>,
+					<%= @responsavel.bairro%>. Cidade: <%= @responsavel.cidade%>-<%= @responsavel.uf%> 
+					<br/>
+					Telefone: <%= @responsavel.telefone%><% end %>
+					<br/>
+				</p>
+				
+				<% if !@matricula.turma.nil? %>
+					<p align="justify">
+						<strong> Curso</strong>:  <%= @matricula.turma.curso.nome%> <strong>Turma:</strong> <%= @matricula.turma.nome%>
+					</p>
+				<%else%>
+					SEM TURMA
+				<% end %>
+				
+
+				<p align="justify">
+					PERÍODO DE VIGÊNCIA DO CONTRATO: <strong> <%= @matricula.data_inicio_contrato.strftime('%d/%m/%Y')%> </strong> até <strong> <%= @matricula.data_fim_contrato.strftime('%d/%m/%Y')%> </strong>
+					CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS 	que entre si celebram, de um lado a ESCOLA DE MUSICA <strong><%= @matricula.turma.instituicao.razao_social%></strong>,
+					pessoa jurídica de direito privado, CNPJ. : <%= @matricula.turma.instituicao.cnpj%>, com sede na Av. Ministro João Alberto nº 1754  SETOR Bela Vista , Aragarças-Go,  doravante denominada
+					simplesmente CONTRATADA , e de outro lado, o (a) CONTRATANTE <strong><%= @responsavel.nome %></strong>, brasileiro(a), <%= @responsavel.estado_civil %>,
+					portador(a) da cédula de identidade nº <%= @responsavel.rg %> e do CPF nº <%= @responsavel.cpf%>, residente e domiciliado(a) na Rua <%= @responsavel.endereco%>,
+					Setor <%= @responsavel.bairro%>, CEP <%= @responsavel.cep%>, <%= @responsavel.cidade%>-<%= @responsavel.uf%>, doravante assim designado neste
+					instrumento representante legal do aluno <strong> <%= @matricula.aluno.nome%></strong>, qualificado na ficha de matrícula, no preâmbulo do presente contrato <strong> CLÁUSULA PRIMEIRA</strong> – O objeto do presente contrato
+					é a <strong>PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS </strong>pela CONTRATADA ao aluno indicado pelo CONTRATANTE, dos cursos e das disciplinas especificadas na
+					ficha de matrícula aposta no preâmbulo do presente instrumento.
+				</p>
+
+				<p align="justify">
+					<strong> Artigo Primeiro </strong>- Está incluída no objeto a reserva de vaga em seu corpo discente;
+				</p>
+				<p align="justify">
+					<strong> Artigo Segundo</strong> - A reserva de vaga pactuada no presente instrumento é pessoal e intransferível;
+				</p>
+				<p align="justify">
+					<strong>Artigo Terceiro </strong>– A PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS, objeto deste CONTRATO, tem seu início e término conforme a ficha de matrícula e período de vigência do contrato,
+					no preâmbulo do presente contrato;
+				</p>
+				<p align="justify">
+					<strong>CLÁUSULA SEGUNDA </strong>– Pelos serviços prestados a contratante pagará a importância de <strong><%= @valor_total%> </strong>, com <strong> desconto de pontualidade de R$ 20,00 SOBRE O VALOR DA PARCELA
+					NO ATO DO PAGAMENTO</strong>
+					dividido em parcelas conforme a CLÁUSULA TERCEIRA.
+				</p>
+				<p align="justify">
+					Artigo Primeiro – Será concedido ao CONTRATANTE um desconto para as parcelas pagas dentro do vencimento conforme o plano de parcelamento da CLÁUSULA TERCEIRA.
+				</p>
+				<p align="justify">
+					CLÁUSULA TERCEIRA – O plano de parcelamento é o seguinte:
+				</p>
+
+				<table class="contrato">
+					
+					<tr>
+						<th>PARCELA</th>
+						<th>MÊS DE REFERENCIA</th>
+						<th>VENCIMENTO</th>
+						<th>LÍQUIDO</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td><%= @matricula.data_inicio_contrato.month.to_i%>/<%= @matricula.data_inicio_contrato.year%></td>
+						<td><%= @matricula.dia_vencimento%>/<%= @matricula.data_inicio_contrato.month.to_i%>/<%= @matricula.data_inicio_contrato.year%></td>
+						<td><%= @valor_parcela%></td>
+					</tr>
+					<% (2..@numero_parcelas).each do |parcela| %>
+					<tr>
+						<td><%= parcela %></td>
+						<td>	
+							<%if @matricula.data_inicio_contrato.month.to_i + parcela-1 < 13%>	
+								<%= @matricula.data_inicio_contrato.month.to_i + parcela-1 %>/<%= @matricula.data_inicio_contrato.year%>
+							<%else%>
+								<%= (@matricula.data_inicio_contrato.month.to_i + parcela-1) - 12 %>/<%= @matricula.data_inicio_contrato.year + 1%>
+							<%end%>
+						</td>
+						<td>
+							<%if @matricula.data_inicio_contrato.month.to_i + parcela-1 < 13%>	
+								<%= @matricula.dia_vencimento%>/<%= @matricula.data_inicio_contrato.month.to_i + parcela-1 %>/<%= @matricula.data_inicio_contrato.year%>
+							<%else%>
+								<%= @matricula.dia_vencimento%>/<%= (@matricula.data_inicio_contrato.month.to_i + parcela-1) - 12 %>/<%= @matricula.data_inicio_contrato.year + 1%>
+							<%end%>
+						</td>
+						<td><%= @valor_parcela%></td>
+					</tr>
+					<% end %>
+				</table>
+
+				<p align="justify">
+					Artigo Primeiro – Em caso de INADIMPLÊNCIA após o primeiro dia de vencido, a parcela perderá o desconto pontualidade e incidindo sobre as mesmas o acréscimo
+					de<strong> 2% </strong> de multa e <strong> 0.2% </strong> ao dia de taxa de permanência.
+				</p>
+
+				<p align="justify">
+					Artigo Segundo – Caso não seja identificado o pagamento após 15 dias do vencimento acarretará na suspensão das aulas até que a situação do mesmo seja regularizada.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA QUARTA – Para requerer trancamento o aluno deverá preencher o formulário próprio na secretaria da escola.
+				</p>
+
+				<p align="justify">
+					Artigo Primeiro – O CONTRATANTE deverá estar em dia com o pagamento das parcelas até a data do requerimento.
+				</p>
+
+				<p align="justify">
+					Artigo Segundo – O prazo máximo de trancamento será de 60 dias.
+				</p>
+
+				<p align="justify">
+					Artigo Terceiro – Durante o período de trancamento não haverá suspensão do pagamento das parcelas.
+				</p>
+
+				<p align="justify">
+					Artigo Quarto – O trancamento não garante vaga nos mesmos horários e com os mesmos professores.
+				</p>
+
+				<p align="justify">
+					Artigo Quinto – O trancamento não poderá ser prorrogado.
+				</p>
+
+				<p align="justify">
+					Artigo Sexto – O aluno só poderá requerer o trancamento uma única vez durante a vigência do contrato.
+				</p>
+				<br />
+				<p align="justify">
+					Artigo Sétimo – Caso o aluno não retorne às aulas no prazo máximo de trancamento de 60 dias, o mesmo perderá o direito às aulas
+					restantes e terá sua matrícula cancelada sem que a CONTRATADA tenha que fazer qualquer ressarcimento de valor.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA QUINTA – O CONTRATANTE está ciente da obrigatoriedade da aquisição de todo e qualquer material extra indicado, pelo professor,
+					indispensável ao desenvolvimento das atividades, não incluso no valor deste CONTRATO.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA SEXTA – A CONTRATADA poderá encerrar ou remanejar horários mediante aviso prévio à CONTRATANTE, sendo oferecida, à mesma,
+					outras opções de horários ou turmas e, na hipótese da não aceitação, ocorrerá o cancelamento do contrato sendo ressarcido o valor
+					remanescente do contratado.
+				</p>
+
+				<p align="justify">
+					Artigo Primeiro – A CONTRATADA terá o prazo de 30(trinta) dias em caso de ressarcimento de valores.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA SÉTIMA – O presente contrato poderá ser rescindo a pedido do(a) CONTRATANTE, mediante requerimento escrito, com 30 dias de antecedência,
+					observadas as seguintes condições:
+				</p>
+				<ol type="I" align="justify">
+					<li>
+						O CONTRATANTE deverá estar em dia com o pagamento das parcelas até a data do requerimento.
+					</li>
+					<li>
+						Serão cobradas as aulas dadas e previstas até o dia do requerimento e mais uma multa rescisória de 15%
+						do valor integral do módulo, independente dos motivos que embasaram o requerimento.
+					</li>
+					<li>
+						Caso exista alguma diferença a ser ressarcida ao aluno, esta devolução será feita no prazo máximo de 30
+						dias após o requerimento.
+					</li>
+				</ol>
+				<p align="justify">
+					CLÁUSULA OITAVA – O CONTRATANTE deverá notificar a CONTRATADA sobre sua mudança de endereço.
+				</p>
+				<p align="justify">
+					CLÁUSULA NONA – O CONTRATANTE autoriza, em caráter irrevogável e irretratável, a CONTRATADA
+					a utilizar sua imagem, voz em apresentação, filmadas, gravadas, e/ou fotografadas nas aulas, apresentações e/ou
+					por ela produzidos, de forma inteiramente gratuita, desde que vinculada à imagem da CONTRATADA, inclusive para fins
+					institucionais e promocionais.
+				</p>
+				<p align="justify">
+					CLÁUSULA DÉCIMA – O ALUNO terá direito a reposições de aulas por ausência devidamente justificada com
+					uma antecedência mínima de (três) horas, devidamente documentada.
+				</p>
+				<ol type="I" align="justify">
+					<li>
+						O descumprimento desta cláusula desobriga a CONTRATADA quanto à reposição.
+					</li>
+					<li>
+						As reposições deverão ser agendadas pela 	CONTRATADA observando a disponibilidade do professor e da
+						ESCOLA ELITE MÚSICA PROJETOS MUSICAIS, limitadas ao período de vigência do contrato.
+					</li>
+				</ol>
+				<p align="justify">
+					CLÁUSULA DÉCIMA PRIMEIRA – O abandono do curso não isentará o CONTRATANTE do pagamento dos valores e
+					condições contadas nas cláusulas TERCEIRA E SÉTIMA podendo a CONTRATADA após 60 dias proceder à inserção do seu nome
+					junto ao Serviço de Proteção ao Crédito (SPC), sem prejuízo da sua cobrança judicial.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA DÉCIMA SEGUNDA – As partes elegem o Foro de Aragarças-GO para dirimir quaisquer dúvidas porventura
+					emergentes do presente instrumento de contrato, renunciando desde já qualquer outro por mais privilegiado que seja.
+				</p>
+
+				<p align="justify">
+					CLÁUSULA DÉCIMA TERCEIRA – O CONTRATANTE declara que teve conhecimento prévio de todas as condições deste
+					contrato, conhecendo-as e aceitando-as.
+				</p>
+
+				<p align="justify">
+					Aragarças, <%= @matricula.data_inicio_contrato.strftime('%d/%m/%Y')%>
+				</p>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<p align="center">
+					________________________________________________________
+					<br />
+					RESPONSÁVEL DA CONTRATADA <br />
+					<%= @matricula.turma.instituicao.responsavel%>
+				</p>
+
+				<br />
+				<br />
+				<p align="center">
+					________________________________________________________
+					<br />
+					Contratante: <%= @responsavel.nome %>
+				</p>
+
+				<br />
+				<br />
+
+				<p align="justify">
+					NORMAS DE CONDUTA DO ALUNO
+				</p>
+				<ol align="justify" type="1">
+					<li>
+						O aluno deverá portar com cuidado e zelo no uso dos instrumentos da escola, sob pena de responsabilidade por
+						quaisquer danos.
+					</li>
+					<li>
+						Na sala de aula o aluno deverá:
+					</li>
+					<ul align="justify">
+						<li>
+							respeitar o volume estipulado pelo professor;
+						</li>
+						<li>
+							respeitar o professor, não tocando ou cantando durante as explicações;
+						</li>
+						<li>
+							respeitar seus colegas. Saber ouvir é condição básica para evoluir musicalmente;
+						</li>
+						<li>
+							não fumar nem consumir qualquer tipo de alimento;
+						</li>
+						<li>
+							ao entrar na sala de aula o aluno deverá desligar telefones celulares e bips.
+						</li>
+					</ul>
+					<li>
+						No caso de falta do aluno sem aviso prévio de, no mínimo, 3 horas de antecedência, não haverá reposição de aula
+						nem desconto na mensalidade.
+					</li>
+					<li>
+						Não é permitida a comercialização nem a divulgação de eventos sem a autorização da direção.
+					</li>
+					<li>
+						Só é permitido fumar e consumir alimentos e bebidas nas áreas externas da escola.
+					</li>
+					<li>
+						O consumo de bebida alcoólica é terminantemente proibido em qualquer dependência da escola.
+					</li>
+					<li>
+						O aluno deverá estar ciente dos feriados e férias, verificando o cronograma de sua unidade.
+					</li>
+					<li>
+						Questões não citadas neste documento serão analisadas, individualmente pela direção da escola. O aluno ou responsável
+						declara estar ciente e concordar plenamente com as normas acima.
+					</li>
+				</ol>
+				<br />
+				<br />
+				<p align="justify">
+					Aragarças, _____, de _______________, de__________.
+				</p>
+				<br />
+				<br />
+				<p align="center">
+					_______________________________________________________
+					<br />
+					ASSINATURA DO ALUNO OU RESPONSÁVEL
+				</p>
+				<br />
+				<br />
+				<br />
+				<p align="center">
+					_______________________________________________________
+					<br />
+					RESPONSÁVEL DA CONTRATADA <br /><%= @matricula.turma.instituicao.responsavel%>
+				</p>
+				<br />
+				<br />
+			</div>
+		</div>
+	</div>

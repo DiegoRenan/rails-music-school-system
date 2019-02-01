@@ -1,0 +1,46 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<h1>Funcionarios Turmas</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Funcionárioss</th>
+			<th>Turma</th>
+			<th>Status</th>
+			<th colspan="3"></th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% s_array = Funcionario.all.map { |s| [s.nome, s.id] } %>
+		<% t_array = Turma.all.map { |t| [t.nome, t.id] } %>
+
+		<% @funcionarios_turmas.each do |funcionarios_turma| %>
+		<tr>
+			<% s_array.each do |r|%>
+				<% if r[1] == funcionarios_turma.funcionarios_id %>
+					<td><%= r[0] %></td>
+				<%end%>
+			<%end%>
+			
+			<% t_array.each do |d|%>
+				<% if d[1] == funcionarios_turma.turmas_id %>
+					<td><%= d[0] %></td>
+				<%end%>
+			<%end%>
+			<td><%= funcionarios_turma.stauts %></td>
+			<td><%= link_to 'Show', funcionarios_turma %></td>
+			<td><%= link_to 'Edit', edit_funcionarios_turma_path(funcionarios_turma) %></td>
+			<td><%= link_to 'Destroy', funcionarios_turma, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Funcionarios turma', new_funcionarios_turma_path %>

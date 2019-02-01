@@ -1,0 +1,217 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require bootstrap.min
+ 
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "main"
+
+body {
+ 
+  font-size: 90%;
+ background-image: image-url("background1.jpg");
+}
+
+
+section {
+  overflow: auto;
+}
+                        /**------------------------- nav ------------------------- **/
+nav a:link {
+    text-decoration: none;
+    font: 14px $font-stack;
+    padding: 6px 12px 1px 0px;
+}
+
+nav a:visited {
+    text-decoration: none;
+    color: none;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: none;
+}
+
+nav a:active {
+    text-decoration: none;
+    color: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+						/*--------------------TABLES----------------------*/
+.colCarne{
+	border: 1px solid black;
+	text-align: left;
+	margin: 0 auto;	
+	padding: 1px;
+}
+
+table {
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+tr:hover {
+	background-color: #BBBBBB; 
+}
+
+tr {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even):hover{
+	background-color: #BBBBBB;
+}
+
+tr:nth-child(even) {
+	background-color: #DCDCDC;
+}
+
+
+th, td {
+	padding: 20px;
+	text-align: center;
+}
+
+th {
+	background-color: #2B669A;
+	color: white;
+    height: 50px;
+    text-align: center;
+	font-size: 12px;
+}
+
+/*colunas*/
+td {
+	text-align: left;
+	line-height: 0.2;
+	font-size: 12px;
+	text-align: center;
+}
+					/**------------------------- icons-menu------------------------- **/
+
+.icons-menu{
+	text-decoration: none;
+	color: none;
+	padding-top: 20px;
+	float:left;
+	padding-left: 15px;
+}
+
+.icon{
+	margin: 0px;
+	padding: 0px;
+}
+.icon img:hover{
+	transform: scale(1.2);
+}
+
+.icon:hover{
+	text-decoration: none;
+	background-color: transparent;
+}
+
+					/**------------------------- menu-left------------------------- **/
+.menu-left{
+	padding-top: 120px;
+	float:left;
+	padding-left: 5px;
+	width: 15%;
+}
+
+.menu-left li{
+	border-radius: 5px;
+	background-color: #F5F5F5;
+
+}
+
+					/**------------------------- container------------------------- **/
+.container{
+	float: left;
+	width: 84%;
+	font-size: 12px;	
+}
+
+.panel{
+	background-color: #F8F8F8;
+}
+			/*---------------------------------area de impressão  ------------------**/
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable, #printable * {
+    visibility: visible;
+  }
+  #printable {
+  	width: 100%;
+    position: relative;
+    
+    left: -60px;
+    top: -200px;
+  }
+  
+  #carne #printable{
+  	width: 100%;
+    position: relative;
+    
+    left: -120px;
+    top: 5px;
+  }
+}
+
+#print{
+	
+}
+
+			/*---------------------------------area de impressão  ------------------**/
+

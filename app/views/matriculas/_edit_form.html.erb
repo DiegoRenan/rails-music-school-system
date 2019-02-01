@@ -1,0 +1,96 @@
+ <div class="panel panel-default" >
+	<div class="panel-body">
+		<%= form_for(@matricula) do |f| %>
+		<% if @matricula.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@matricula.errors.count, "error") %> prohibited this matricula from being saved:</h2>
+
+			<ul>
+				<% @matricula.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+
+			<p>
+				<strong>Codigo matricula:</strong>
+				<%= @matricula.id %>
+			</p>
+
+			<p>
+				<strong>Status matricula:</strong>
+				<%= @matricula.status_matricula %>
+			</p>
+
+			<p>
+				<strong>Data inicio matricula:</strong>
+				<%= @matricula.data_inicio_matricula.strftime("%d/%m/%Y") %>
+			</p>
+
+
+			<p>
+				<strong>Número de Parcelas:</strong>
+				<%= @numero_parcelas %>
+			</p>
+
+			<p>
+				<strong>Turma:</strong>
+				<%= @matricula.turma.nome %>
+			</p>
+
+			<p>
+				<strong>Aluno:</strong>
+				<%= @matricula.aluno.nome %>
+			</p>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :status_matricula %>
+				<br>
+				<%= f.select(:status_matricula, options_for_select([['Aberta'], ['Concluida'],['Encerrada']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+
+
+
+		<h1>Contrato</h1>
+
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :data_inicio_contrato %>
+				<br>
+				<%= f.date_select :data_inicio_contrato,:order => [:day, :month, :year], default: { day: Time.now.day, month: Time.now.day, year: Time.now.year}, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :data_fim_contrato %>
+				<br>
+
+				<%= f.date_select :data_fim_contrato , :order => [:day, :month, :year], default: { day: Time.now.day, month:'12', year: Time.now.year}, class: "form-control"  %>
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :status_contrato %>
+				<br>
+				<%= f.select(:status_contrato, options_for_select([['Aberta'], ['Concluida'],['Encerrada']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+
+		<% end %>
+	</div>
+</div>

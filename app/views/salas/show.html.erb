@@ -1,0 +1,30 @@
+<div class="icons-menu show">
+	<%= link_to image_tag("icons/back.png"), salas_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/edit.png"),edit_sala_path(@sala), {:class => "icon"}%>
+	<%= link_to image_tag("icons/delete.png"), @sala, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+<h1>Salas</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice">
+			<%= notice %>
+		</p>
+
+		<p>
+			<strong>Nome:</strong>
+			<%= @sala.nome %>
+		</p>
+
+		<p>
+			<strong>Numero:</strong>
+			<%= @sala.numero %>
+		</p>
+
+		<p>
+			<strong>Limite:</strong>
+			<%= @sala.limite %>
+		</p>
+	</div>
+</div>
+

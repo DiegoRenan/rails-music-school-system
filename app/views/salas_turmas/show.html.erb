@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<h1>Sala X Turma</h1>
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<p id="notice">
+					<%= notice %>
+				</p>
+				<% s_array = Sala.all.map { |s| [s.nome, s.id] } %>
+				<% t_array = Turma.all.map { |t| [t.nome, t.id] } %>
+				<p>
+					<strong>Sala:</strong>
+					<% s_array.each do |r|%>
+					<% if r[1] == @salas_turma.salas_id %>
+					<td><%= r[0] %></td>
+					<%end%>
+					<%end%>
+				</p>
+				<p>
+					<strong>Turma:</strong>
+					<% t_array.each do |d|%>
+					<% if d[1] == @salas_turma.turmas_id %>
+					<td><%= d[0] %></td>
+					<%end%>
+					<%end%>
+				</p>
+				<p>
+					<strong>Status:</strong>
+					<%= @salas_turma.status %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<%= link_to 'Edit', edit_salas_turma_path(@salas_turma) %> |
+<%= link_to 'Back', salas_turmas_path %>

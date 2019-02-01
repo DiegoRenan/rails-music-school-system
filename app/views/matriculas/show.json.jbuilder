@@ -1,0 +1,1 @@
+json.extract! @matricula, :id, :codigo_matricula, :status_matricula, :data_inicio_matricula, :codigo_contrato, :data_inicio_contrato, :data_fim_contrato, :turma_id, :aluno_id, :created_at, :updated_at

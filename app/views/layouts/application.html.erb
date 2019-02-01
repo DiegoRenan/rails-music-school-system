@@ -1,0 +1,102 @@
+
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+      <script src="/lib/assets/html5.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<% if logged_in? %>
+	<header>
+	   <header class="navbar navbar-inverse navbar-fixed-top " role="search">
+	   	 	<div class="container">
+				<nav>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<%= link_to current_user.login, '#' %>
+						</li>
+						<li>
+							<%= link_to 'Home', controller: 'welcome'	%>
+						</li>
+						<li>
+							<%= link_to "Ajuda",   '#' %>
+						</li>
+						<li>
+							<%= link_to "Configurações", controller: 'configuracaos' %>
+						</li>
+						<li>
+							<% if logged_in? %>
+								<%= link_to "Sair", logout_path, method: :delete %>
+							<% else logged_in? %>
+								<%= link_to "Log in", login_path %>							
+							<% end %>		
+						</li>
+					</ul>
+				</nav>
+				<!--
+				<div class="form-group">
+		    		<input type="text" class="form-control" placeholder="Search">
+		  		</div>
+		  		<button type="submit" class="btn btn-default">Submit</button>
+		  		-->
+			</div>
+		</header>
+	</header>
+	<div class="menu-left" >
+		<ul class="nav nav-pills nav-stacked">
+			<li class="active"><%= link_to 'Home', controller: 'welcome'	%></li>
+			<li class="active"><%= link_to 'Alunos', controller: 'alunos' %></li>
+			<li class="active"><%= link_to 'Matriculas', controller: 'matriculas' %></li>
+			<li class="active"><%= link_to 'Turmas', controller: 'turmas' %></li>
+			<li class="active"><%= link_to 'Cursos', controller: 'cursos' %></li>
+			<li class="active"><%= link_to 'Salas', controller: 'salas' %></li>
+			<li class="active"><%= link_to 'Contrato Modelos', controller: 'modelcons' %></li>
+			<li class="active"><%= link_to 'Funcionarios', controller: 'funcionarios' %></li>		
+			<li class="active"><%= link_to 'Responsáveis', controller: 'responsavels' %></li>
+			<li class="active"><%= link_to 'Mensalidades', controller: 'mensalidades' %></li>
+			<li class="active"><%= link_to 'Salas Turmas', controller: 'salas_turmas' %></li>
+			<li class="active"><%= link_to 'Funcionarios Turmas', controller: 'funcionarios_turmas' %></li>
+		</ul>
+	</div>
+	<div class="container" style="padding-top: 50px">
+		<%= yield%>
+	</div>
+			
+<% else %>
+	<header class="navbar navbar-custom navbar-fixed-top " role="search">
+	   	 	<div class="container">
+				<nav>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<%= link_to "About",   '#' %>
+						</li>
+						<li>
+							<%= link_to "Help", '#' %>
+						</li>
+					</ul>
+				</nav>
+				<!--
+				<div class="form-group">
+		    		<input type="text" class="form-control" placeholder="Search">
+		  		</div>
+		  		<button type="submit" class="btn btn-default">Submit</button>
+		  		-->
+			</div>
+		</header>
+	<div class="row" style="padding-top: 100px">
+  		<div class="col-md-4 col-md-offset-4">
+  			<ul style="color: red">Você não está logado</ul>
+			<%= button_to "Log in ->",  login_path, :method => :get, class: "btn btn-primary btn-block" %>
+		</div>
+  	</div>
+<% end %>
+</body>
+</html>

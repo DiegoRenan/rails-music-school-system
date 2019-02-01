@@ -1,0 +1,49 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<%= form_for(@salas_turma) do |f| %>
+		<% if @salas_turma.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@salas_turma.errors.count, "error") %> prohibited this salas_turma from being saved:</h2>
+
+			<ul>
+				<% @salas_turma.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :salas_id %>
+				<br>
+				<% c_array = Sala.all.map { |c| [c.nome, c.id] } %>
+				<%= f.select(:sala_id, options_for_select(c_array),{prompt: 'Selecione a Sala: '}, {class: "form-control"} ) %>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :turmas_id %>
+				<br>
+				<% c_array = Turma.all.map { |c| [c.nome, c.id] } %>
+				<%= f.select(:turma_id, options_for_select(c_array),{prompt: 'Selecione Funcionario: '}, {class: "form-control"} ) %>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :status %>
+				<br>
+				<%= f.text_field :status,  class: "form-control"  %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

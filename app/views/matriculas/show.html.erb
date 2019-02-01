@@ -1,0 +1,100 @@
+<script>
+	$('#contrato').hide();
+	$('#carne').hide();
+	$('#gerarContrato').click(function() {
+		$('#contrato').show();
+		$('#showMatricula').hide();
+		$('#carne').hide();
+	});
+	$('#gerarCarne').click(function() {
+		$('#carne').show();
+		$('#showMatricula').hide();
+		$('#contrato').hide();
+	}); 
+</script>
+
+<div class="icons-menu show">
+	<%= link_to image_tag("icons/back.png"), matriculas_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/edit.png"),edit_matricula_path(@matricula), {:class => "icon"}%>
+	<%= link_to image_tag("icons/delete.png"), @matricula, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+	|<button id="gerarContrato" style="background: none; border: none"> <%=image_tag("icons/contrato.png", alt: "contrato",:class => "icon" )%></button>
+	<button id="gerarCarne" style="background: none; border: none"> <%=image_tag("icons/Barcode.png", alt: "carne",:class => "icon" )%></button>
+</div>
+<br />
+
+<div id="showMatricula" >
+	<h1>Matriculas</h1>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<p id="notice">
+				<%= notice %>
+			</p>
+			<p>
+				<strong>Codigo matricula:</strong>
+				<%= @matricula.id %>
+			</p>
+
+			<p>
+				<strong>Status matricula:</strong>
+				<%= @matricula.status_matricula %>
+			</p>
+
+			<p>
+				<strong>Data inicio matricula:</strong>
+				<%= @matricula.data_inicio_matricula.strftime("%d/%m/%Y") %>
+			</p>
+
+			<p>
+				<strong>Data inicio contrato:</strong>
+				<%= @matricula.data_inicio_contrato.strftime("%d/%m/%Y") %>
+			</p>
+
+			<p>
+				<strong>Data fim contrato:</strong>
+				<%= @matricula.data_fim_contrato.strftime("%d/%m/%Y") %>
+			</p>
+
+			<p>
+				<strong>Número de Parcelas:</strong>
+				<%= @numero_parcelas %>
+			</p>
+
+			<p>
+				<strong>Staus Contrato</strong>
+				<%= @matricula.status_contrato %>
+			</p>
+
+			<p>
+				<strong>Turma:</strong>
+				<% if !@matricula.turma.nil? %>
+					<%= @matricula.turma.nome %>
+				<%else%>
+					SEM TURMA
+				<% end %>
+			</p>
+
+			<p>
+				<strong>Aluno:</strong>
+				<%= @matricula.aluno.nome %>
+			</p>
+		</div>
+
+	</div>
+	
+
+	<%if !there_carne?(@matricula.id) %>
+		<%= button_to 'Gerar Mensalidades', {:controller => "mensalidades", :action => "create", :matricula_id=> @matricula.id} , :method=>:post , :style => "float:right", :class=> "btn btn-default" %>
+	<%end%>
+	
+	<%= link_to 'Edit', edit_matricula_path(@matricula) %> |
+	<%= link_to 'Back', matriculas_path %>
+</div>
+
+<div id="carne">
+	<%= render 'carner' %>
+</div>
+
+<div id="contrato" >
+	<%= render 'contrato' %>
+</div>

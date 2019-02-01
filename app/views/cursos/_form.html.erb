@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<%= form_for(@curso) do |f| %>
+		<% if @curso.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@curso.errors.count, "error") %> prohibited this curso from being saved:</h2>
+
+			<ul>
+				<% @curso.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nome %>
+				<br>
+				<%= f.text_field :nome, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :valor %>
+				<br>
+				<%= f.number_field :valor,min: 0, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+
+		<% end %>
+	</div>
+</div>

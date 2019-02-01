@@ -1,0 +1,184 @@
+<div class="panel panel-primary form-inline">
+	<div class="panel-body">
+		<%= form_for(@funcionario) do |f| %>
+		<% if @funcionario.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@funcionario.errors.count, "error") %> prohibited this funcionario from being saved:</h2>
+
+			<ul>
+				<% @funcionario.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		
+		<h5 style="color: red">*campos obrigatórios</h5>
+		<h4 style="color: green;text-align: center;: center">Dados Pessoais</h4>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :cpf %>*
+				<br>
+				<%= f.number_field :cpf,min: 0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :rg %>
+				<br>
+				<%= f.number_field :rg,min:0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nome %>
+				<br>
+				<%= f.text_field :nome,:size => 65, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<h4 style="color: green;text-align: center;: center">Informações de Contato</h4>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :telefone %>
+				<br>
+				<%= f.number_field :telefone, min: 0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :celular %>*
+				<br>
+				<%= f.number_field :celular, min: 0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :celular_op %>
+				<br>
+				<%= f.number_field :celular_op, min: 0,  class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :email %>
+				<br>
+				<%= f.text_field :email, :size => 65, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :cargo %>*
+				<br>
+				<!--<%= f.text_field :cargo, class: "form-control"  %>-->
+				<%= f.select(:cargo, options_for_select([['Professor(a)'], ['Secretário(a)'],['Monitor(a)'],['Administrador(a)']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		
+		<br />
+		<h4 style="color: green;text-align: center;: center">Endereço</h4>
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :cep %>*
+					<br>
+					<%= f.number_field :cep, min: 0, class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :endereco %>*
+					<br>
+					<%= f.text_field :endereco,  :size => 65, class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :numero %>*
+					<br>
+					<%= f.number_field :numero,min: 0,  class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :bairro %>*
+					<br>
+					<%= f.text_field :bairro, class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+		
+			<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :logradouro %>
+					<br>
+					<%= f.text_field :logradouro, class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :cidade %>*
+					<br>
+					<%= f.text_field :cidade, class: "form-control"  %>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="field">
+				<div class="field">
+					<%= f.label :uf %>*
+					<br>
+					<%= f.select(:uf, options_for_select([['AC'], ['AL'], ['AP'],['AM'],['BA'],['CE'], ['DF'], ['ES'], ['GO'], ['MA'], ['MT'], ['MS'], ['MG'], ['PR'],
+     ['PB'], ['PA'], ['PE'], ['PI'],['RJ'], ['RN'], ['RS'], ['RO'], ['RR'], ['SC'], ['SE'], ['SP'], ['TO'], ['SP'],['TO']], selected: :GO),{}, {class: "form-control"})%>
+
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :instituicao_id %>*
+				<br>
+				<% c_array = Instituicao.all.map { |c| [c.nome_fantasia, c.id] } %>
+				<%= f.select(:instituicao_id, options_for_select(c_array),{prompt: 'Selecione Instituicao: '}, {class: "form-control"} ) %>
+			</div>
+		</div>
+		<br />
+		<br />
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,61 @@
+<div class="icons-menu show">
+<%= link_to image_tag("icons/back.png"), turmas_path, {:class => "icon"}%>
+<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+<%= link_to image_tag("icons/edit.png"),edit_turma_path(@turma), {:class => "icon"}%>
+<%= link_to image_tag("icons/delete.png"), @turma, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+<h1>Turma</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice">
+			<%= notice %>
+		</p>
+
+		<p>
+			<strong>Nome:</strong>
+			<%= @turma.nome %>
+		</p>
+
+		<p>
+			<strong>Inicio:</strong>
+			<%= @turma.inicio.strftime("%d/%m/%Y") %>
+		</p>
+
+		<p>
+			<strong>Termino:</strong>
+			<%= @turma.termino.strftime("%d/%m/%Y") %>
+		</p>
+		
+		<p>
+			<strong>Turno:</strong>
+			<%= @turma.turno %>
+		</p>
+		
+		<p>
+			<strong>Hora inicio:</strong>
+			<%= @turma.hora_inicio.strftime("%H:%M") %>
+		</p>
+
+		<p>
+			<strong>Hora fim:</strong>
+			<%= @turma.hora_fim.strftime("%H:%M") %>
+		</p>
+
+		<p>
+			<strong>Dia:</strong>
+			<%= @turma.dia %>
+		</p>
+
+		<p>
+			<strong>Instituicao:</strong>
+			<%= @turma.instituicao.nome_fantasia %>
+		</p>
+
+		<p>
+			<strong>Curso:</strong>
+			<%= @turma.curso.nome %>
+		</p>
+	</div>
+</div>
+<%= link_to 'Edit', edit_turma_path(@turma) %> |
+<%= link_to 'Back', turmas_path %>

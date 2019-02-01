@@ -1,0 +1,160 @@
+<div class="panel panel-primary form-inline">
+	<div class="panel-body">
+		<%= form_for(@responsavel) do |f| %>
+		<% if @responsavel.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@responsavel.errors.count, "error") %> prohibited this responsavel from being saved:</h2>
+
+			<ul>
+				<% @responsavel.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		
+		<h5 style="color: red">*campos obrigatórios</h5>
+		<h4 style="color: green;text-align: center;: center">Dados Pessoais</h4>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :cpf %>*
+				<br>
+				<%= f.number_field :cpf,min: 0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :rg %>
+				<br>
+				<%= f.number_field :rg,min: 0, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nome %>*
+				<br>
+				<%= f.text_field :nome, size: 65, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :data_nascimento %>*
+				<br>
+				<%= f.date_select :data_nascimento, :start_year => 1956, :end_year => 2014, :order => [:day, :month, :year], class: "btn btn-primary" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :estado_civil %>*
+				<br>
+				<%= f.select(:estado_civil, options_for_select([['Solteiro(a)'], ['Casado(a)'],['Separado(a)'],['Viúvo(a)']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		
+		<br />
+		<h4 style="color: green;text-align: center;: center">Informações de Contato</h4>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :telefone %>
+				<br>
+				<%= f.number_field :telefone,min: 0, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :celular %>*
+				<br>
+				<%= f.number_field :celular, min: 0, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :email %>
+				<br>
+				<%= f.text_field :email, size: 65, class: "form-control"  %>
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :profissao %>
+				<br>
+				<%= f.text_field :profissao, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<h4 style="color: green;text-align: center;: center">Endereço</h4>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :cep %>*
+				<br>
+				<%= f.text_field :cep, class: "form-control"  %>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :endereco %>*
+				<br>
+				<%= f.text_field :endereco, size: 65, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :numero %>*
+				<br>
+				<%= f.number_field :numero, min: 0,  class: "form-control"  %>
+			</div>
+		</div>
+		
+		<br />
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :bairro %>*
+				<br>
+				<%= f.text_field :bairro, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :cidade %>*
+				<br>
+				<%= f.text_field :cidade, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :uf %>*
+				<br>
+				<%= f.select(:uf, options_for_select([['AC'], ['AL'], ['AP'],['AM'],['BA'],['CE'], ['DF'], ['ES'], ['GO'], ['MA'], ['MT'], ['MS'], ['MG'], ['PR'],
+     ['PB'], ['PA'], ['PE'], ['PI'],['RJ'], ['RN'], ['RS'], ['RO'], ['RR'], ['SC'], ['SE'], ['SP'], ['TO'], ['SP'],['TO']], selected: :GO),{}, {class: "form-control"})%>
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

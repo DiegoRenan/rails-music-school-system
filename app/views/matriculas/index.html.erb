@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="icons-menu">
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/new.png"), new_matricula_path, {:class => "icon"}%>
+</div>
+
+<h1>Matrículas
+	<%= render 'search'%>
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>n</th>
+      <th>Aluno</th>
+      <th>Status matricula</th>
+      <th>Turma</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matriculas.each_with_index do |matricula, index| %>
+      <tr>
+      	<td><%= index %></td>
+      	<td><%= matricula.aluno.nome %></td>
+        <td><%= matricula.status_matricula %></td>
+		<% if !matricula.turma.nil? %>
+			<td><%= matricula.turma.nome %></td>
+		<%else%>
+			<td style="color:red">SEM TURMA</td>
+		<% end %>
+		<td><%= link_to image_tag("icons/show.png"),matricula, {:class => "icon"}%></td>
+      </tr>
+    <% end %>
+    <% if @matriculas.blank? %>
+	  	<h4>Nao encontrado resultados para <%= params[:search] %>.</h4>
+	<% end %>
+  </tbody>
+</table>
+
+<br>

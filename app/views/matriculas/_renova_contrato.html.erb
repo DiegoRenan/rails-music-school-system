@@ -1,0 +1,41 @@
+<h2>Novo Contrato:</h2>
+<%= form_for([@matricula, @matricula.contratos.build]) do |f| %>
+
+  		<div class="form-group">
+			<div class="field">
+				<%= f.label :contrato %>
+				<br>
+				<%= f.text_field :contrato, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :data_inicio %>
+				<br>
+				<%= f.date_select :data_inicio,:order => [:day, :month, :year], class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :data_fim %>
+				<br>
+
+				<%= f.date_select :data_fim , :order => [:day, :month, :year], default: { day: Time.now.day, month:'12', year: Time.now.year}, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :status %>
+				<br>
+				<%= f.select(:status, options_for_select([['Aberta'], ['Concluida'],['Encerrada']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+<% end %>

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+ 
+<div class="icons-menu">
+<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+<%= link_to image_tag("icons/new.png"), new_aluno_path, {:class => "icon"}%>
+</div>
+
+
+
+<h1>
+Alunos
+<%= render 'search'%>
+</h1>
+
+<table>
+	  <thead>
+		    <tr>
+		      <th>n</th>    
+		      <th>Nome</th>
+		      <th>Telefone</th>
+		      <th colspan="3"></th>
+		    </tr>
+	  </thead>
+	 </div>
+  <tbody>
+	    <% @alunos.each_with_index do |aluno, index| %>
+	      <tr>
+	      	<td><%= index %></td>
+	        <td><%= aluno.nome %></td>
+	        <td><%= aluno.celular %></td>
+	        <td><%= link_to image_tag("icons/show.png"),aluno, {:class => "icon"}%></td>	        
+	      </tr>
+	    <% end %>
+	    <% if @alunos.blank? %>
+	  		<h4>Nao encontrado resultados para <%= params[:search] %>.</h4>
+		<% end %>
+	     
+  </tbody>
+</table>
+<br>

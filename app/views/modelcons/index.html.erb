@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<div class="icons-menu">
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/new.png"), new_modelcon_path, {:class => "icon"}%>
+</div>
+
+<h1>Modelos contrato
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @modelcons.each do |modelcon| %>
+      <tr>
+        <td><%= modelcon.titulo %></td>
+
+        <td><%= link_to image_tag("icons/show.png"),modelcon, {:class => "icon"}%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,105 @@
+<div class="panel panel-primary form-inline"">
+	<div class="panel-body">
+		<%= form_for(@turma) do |f| %>
+		<% if @turma.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@turma.errors.count, "error") %> prohibited this turma from being saved:</h2>
+
+			<ul>
+				<% @turma.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nome %>
+				<br>
+				<%= f.text_field :nome, :size => 65, class: "form-control"  %>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :inicio %>
+				<br>
+				<%= f.date_select :inicio, :start_year => 2016, :order => [:day, :month, :year], class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group" style="margin-left: 20px">
+			<div class="field">
+				<%= f.label :termino %>
+				<br>
+				<%= f.date_select :termino, :start_year => 2016, :order => [:day, :month, :year], class: "form-control"  %>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :turno %>
+				<br>
+				<%= f.select(:turno, options_for_select([['Matutino'], ['Vespertino'],['Noturno']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		
+		<div class="form-group" style="margin-left: 20px">
+			<div class="field">
+				<%= f.label :hora_inicio %>
+				<br>
+				<%= f.time_select :hora_inicio, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group" style="margin-left: 20px">
+			<div class="field">
+				<%= f.label :hora_fim %>
+				<br>
+				<%= f.time_select :hora_fim, class: "form-control"  %>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :dia %>
+				<br>
+				<%= f.select(:dia, options_for_select([['Segunda-feira'], ['Terça-feira'],['Quarta-feira'],['Quinta-feira'],['Sexta-feira'],['Sabádo']]), {}, {class: "form-control"})%>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :instituicao_id %>
+				<br>
+				<% c_array = Instituicao.all.map { |c| [c.nome_fantasia, c.id] } %>
+				<%= f.select(:instituicao_id, options_for_select(c_array),{prompt: 'Selecione Instituicao: '}, {class: "form-control"} ) %>
+			</div>
+		</div>
+		<br />
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :curso_id %>
+				<br>
+				<% c_array = Curso.all.map { |c| [c.nome, c.id] } %>
+				<%= f.select(:curso_id, options_for_select(c_array),{}, {class: "form-control"} ) %>
+			</div>
+		</div>
+		<br />
+		
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+
+		<% end %>
+	</div>
+</div>

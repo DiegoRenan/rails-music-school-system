@@ -1,0 +1,91 @@
+<div class="icons-menu show">
+	<%= link_to image_tag("icons/back.png"), funcionarios_path, {:class => "icon"}%>
+	<%= link_to image_tag("icons/home2.png"), {controller:"welcome"}, {:class => "icon"}%>
+	<%= link_to image_tag("icons/edit.png"),edit_funcionario_path(@funcionario), {:class => "icon"}%>
+	<%= link_to image_tag("icons/delete.png"), @funcionario, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon"%>
+</div>
+
+<h1>Funcionários</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<p id="notice"><%= notice %></p>
+		
+		<p>
+		  <strong>Cpf:</strong>
+		  <%= @funcionario.cpf %>
+		</p>
+		
+		<p>
+		  <strong>Rg:</strong>
+		  <%= @funcionario.rg %>
+		</p>
+		
+		<p>
+		  <strong>Nome:</strong>
+		  <%= @funcionario.nome %>
+		</p>
+		
+		<p>
+		  <strong>Telefone:</strong>
+		  <%= @funcionario.telefone %>
+		</p>
+		
+		<p>
+		  <strong>Celular:</strong>
+		  <%= @funcionario.celular %>
+		</p>
+		
+		<p>
+		  <strong>Celular op:</strong>
+		  <%= @funcionario.celular_op %>
+		</p>
+		
+		<p>
+		  <strong>Email:</strong>
+		  <%= @funcionario.email %>
+		</p>
+		
+		<p>
+		  <strong>Cargo:</strong>
+		  <%= @funcionario.cargo %>
+		</p>
+				
+		<p>
+			<strong>Endereco:</strong>
+			<%= @funcionario.endereco %>
+		</p>
+
+		<p>
+			<strong>Bairro:</strong>
+			<%= @funcionario.bairro %>
+		</p>
+
+		<p>
+			<strong>Cidade:</strong>
+			<%= @funcionario.cidade %>
+		</p>
+
+		<p>
+			<strong>Uf:</strong>
+			<%= @funcionario.uf %>
+		</p>
+
+		<p>
+			<strong>Cep:</strong>
+			<%= @funcionario.cep %>
+		</p>
+
+		<p>
+			<strong>Logradouro:</strong>
+			<%= @funcionario.logradouro %>
+		</p>
+		
+		<p>
+		  <strong>Instituicao:</strong>
+		  <%= @funcionario.instituicao.nome_fantasia %>
+		</p>
+		
+		
+	</div>
+</div>
+

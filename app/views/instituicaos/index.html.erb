@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Instituição</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>CNPJ</th>
+      <th>Nome Fantasia</th>
+      <th>Responsável</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instituicaos.each do |instituicao| %>
+      <tr>
+      	<td><%= instituicao.cnpj %></td>
+       	<td><%= instituicao.nome_fantasia %></td>
+        <td><%= instituicao.responsavel %></td>
+        <td><%= link_to 'Show', instituicao %></td>
+        <td><%= link_to 'Editar', edit_instituicao_path(instituicao) %></td>
+        <td><%= link_to 'Deletar', instituicao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Instituição', new_instituicao_path %>
+<%= link_to 'Welcome', controller: 'welcome' %>

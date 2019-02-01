@@ -1,0 +1,105 @@
+<button id="gerarCarne" style="background: none; border: none" onclick="window.print() "><%=image_tag("icons/printer-icon.png", alt: "imprimir",:class => "icon" )%></button>
+	<br />
+	<div id="printable">
+		<div class="panel-body">
+			<% (1..@numero_parcelas).each do |parcela| %>
+			<p>
+				<table class="contrato" style="border: 1px solid black;border-collapse: collapse; width: 684px; height: 227px;">
+					<tr>
+						<td class="colCarne"><h6>Vencimento:</h6>
+						<br />
+						
+							<%if @matricula.data_inicio_contrato.month.to_i + parcela-1 < 13%>	
+								<%= @matricula.dia_vencimento%>/<%= @matricula.data_inicio_contrato.month.to_i + parcela-1 %>/<%= @matricula.data_inicio_contrato.year%>
+							<%else%>
+								<%= @matricula.dia_vencimento%>/<%= (@matricula.data_inicio_contrato.month.to_i + parcela-1) - 12 %>/<%= @matricula.data_inicio_contrato.year + 1%>
+							<%end%>
+							
+						<td class="colCarne"><h6>Local de Pagamento</h6>
+						<br />
+						Av. Ministro João Alberto, nº 1754
+						Setor Bela Vista, Aragarças GO </td>
+
+						<td class="colCarne" ><h6>Vencimento:</h6>
+						<br />
+						
+							<%if @matricula.data_inicio_contrato.month.to_i + parcela-1 < 13%>	
+								<%= @matricula.dia_vencimento%>/<%= @matricula.data_inicio_contrato.month.to_i + parcela-1 %>/<%= @matricula.data_inicio_contrato.year%>
+							<%else%>
+								<%= @matricula.dia_vencimento%>/<%= (@matricula.data_inicio_contrato.month.to_i + parcela-1) - 12 %>/<%= @matricula.data_inicio_contrato.year + 1%>
+							<%end%>
+					</tr>
+
+					<tr>
+						<td class="colCarne"><h6>Valor:</h6>
+						<br />
+						<%= @valor_parcela%> </td>
+
+						<td class="colCarne"><h6>Beneficiário</h6> Escola Elite Música Projetos Musicais </td>
+
+						<td class="colCarne"><h6>Valor:</h6>
+						<br />
+						<%= @valor_parcela%> </td>
+					</tr>
+
+					<tr>
+						<td class="colCarne"><h6>Desconto:</h6>
+						<br />
+						</td>
+
+						<td  class="colCarne"><h6>Data de Emissão: <%= @matricula.data_inicio_contrato.strftime('%d/%m/%Y')%> |
+						Número Parcela: <%= parcela%> |
+						Mês Referencia: <%=((@matricula.data_inicio_matricula.month.to_i + parcela -1) < 13) ? (@matricula.data_inicio_matricula.month.to_i + parcela -1): ((@matricula.data_inicio_matricula.month.to_i + parcela -1) -12) %></h6>
+						Matricula: <%= @matricula.id%></h6>
+						<br />
+						</td>
+
+						<td class="colCarne"><h6>Desconto:</h6>
+						<br />
+						</td>
+					</tr>
+
+					<tr>
+						<td class="colCarne"><h6>Mora/Multa:</h6>
+						<br />
+						</td>
+
+						<td class="colCarne"><h6>Instruções</h6>
+						<br />
+						</td>
+
+						<td class="colCarne"><h6>Mora/Multa:</h6>
+						<br />
+						</td>
+					</tr>
+
+					<tr>
+						<td class="colCarne"><h6>Valor Total:</h6>
+						<br />
+						</td>
+
+						<td class="colCarne"><h6>Pagador:</h6> 
+						<%if !@responsavel.nil? %>
+							<%= @responsavel.nome %>
+						<%end%>
+						<br />
+						</td>
+
+						<td class="colCarne"><h6>Valor Total:</h6>
+						<br />
+						</td>
+					</tr>
+				</table>
+				<br />
+				<br />
+				<%if parcela%3.0 == 0%>
+				<br />
+				<br />
+				<br />
+				<%end%>
+
+			</p>
+			<%end%>
+		</div>
+
+	</div>

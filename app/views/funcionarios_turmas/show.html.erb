@@ -1,0 +1,34 @@
+<h1>Professor X Turma</h1>
+<div class="panel panel-primary">
+	<div class="panel-body">
+
+		<p id="notice">
+			<%= notice %>
+		</p>
+		<% s_array = Funcionario.all.map { |s| [s.nome, s.id] } %>
+		<% t_array = Turma.all.map { |t| [t.nome, t.id] } %>
+		<p>
+			<strong>Professor:</strong>
+			<% s_array.each do |r|%>
+			<% if r[1] == @funcionarios_turma.funcionarios_id %>
+			<td><%= r[0] %></td>
+			<%end%>
+			<%end%>
+		</p>
+		<p>
+			<strong>Turma:</strong>
+			<% t_array.each do |d|%>
+			<% if d[1] == @funcionarios_turma.turmas_id %>
+			<td><%= d[0] %></td>
+			<%end%>
+			<%end%>
+		</p>
+		<p>
+			<strong>Status:</strong>
+			<%= @funcionarios_turma.stauts %>
+		</p>
+	</div>
+</div>
+
+<%= link_to 'Edit', edit_funcionarios_turma_path(@funcionarios_turma) %> |
+<%= link_to 'Back', funcionarios_turmas_path %>

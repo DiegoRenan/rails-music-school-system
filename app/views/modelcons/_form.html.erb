@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<%= form_for(@modelcon) do |f| %>
+		<% if @modelcon.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@modelcon.errors.count, "error") %> prohibited this curso from being saved:</h2>
+
+			<ul>
+				<% @modelcon.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :titulo %>
+				<br>
+				<%= f.text_field :titulo, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :modelo %>
+				<br>
+				<%= f.text_area :modelo, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+
+		<% end %>
+	</div>
+</div>

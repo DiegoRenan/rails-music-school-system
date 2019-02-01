@@ -1,0 +1,67 @@
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<%= form_for(@usuario) do |f| %>
+		<% if @usuario.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+
+			<ul>
+				<% @usuario.errors.full_messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :login %>
+				<br>
+				<%= f.text_field :login, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :password, "Senha" %>
+				<br>
+				<%= f.password_field :password, class: "form-control"  %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :password_confirmation, "Confirme a senha" %>
+				<br>
+				<%= f.password_field :password_confirmation , class: "form-control"  %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :nivel %>
+				<br>
+				<%= f.text_field :nivel, class: "form-control"  %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="field">
+				<%= f.label :funcionario_id %>
+				<br>
+				<% c_array = Funcionario.all.map { |c| [c.nome, c.id] } %>
+				<%= f.select(:funcionario_id, options_for_select(c_array),{prompt: 'Selecione Funcionario: '}, {class: "form-control"} ) %>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
